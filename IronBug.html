@@ -1,0 +1,69 @@
+<head>
+  <title>IronBug</title>
+</head>
+
+<body>
+</body>
+
+<template name="template">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<h1>IronBug - Parameters</h1>
+			<h2>the bootstrap parameter (here's the bug)</h2>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-2">
+					Bootstrap Dropdown Parameter
+				</div>
+				<div class="dropdown col-md-4 sortby">
+          <button class="btn btn-default dropdown-toggle" type="button" id="bootstrapParameterButton" data-toggle="dropdown">
+            {{BootstrapQuery.ParameterValue}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="bootstrapParameterButton">
+            {{#each BootstrapQueryOptions}}
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{Name}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+			</div>
+			<h2>all parameters</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>
+							parameter name
+						</td>
+						<td>
+							parameter value
+						</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each Queries}}
+						<tr>
+							<td>
+								{{ParameterName}}
+							</td>
+							<td>
+								{{ParameterValue}}
+							</td>
+							<td>
+								<button type="button" id="{{ParameterName}}" class="change btn btn-default btn-sm">
+									change parameter
+								</button>
+							</td>
+						</tr>			
+					{{/each}}
+				</tbody>
+			</table>
+	
+			<button type="button" id="add" class="btn btn-primary">add parameter</button>
+			
+			<h2>change log</h2>
+			{{#each Changes}}
+				{{Time}}: Set paramter <b>{{ParameterName}}</b> to <i>{{ParameterValue}}</i><br/>
+			{{/each}}
+		</div>
+	</div>
+</template>
